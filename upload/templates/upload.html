@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Upload Video</title>
+   
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Other meta tags and title -->
+        <!-- CSS stylesheets -->
+   
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 100px auto 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="file"], select {
+            margin: 20px 0;
+        }
+        input[type="submit"] {
+            background: #0779e4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background: #055aa3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #0779e4;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        .upload-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .upload-links a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0779e4;
+            background-color: #fff;
+            border: 1px solid #0779e4;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .upload-links a:hover {
+            background-color: #0779e4;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        
+    </div>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <hr>
+        <h3>Upload Video</h3>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <select name="gallery" required>
+                <option value="">Select Gallery</option>
+                <option value="1">Caroline michelle</option>
+                <option value="2">Queen Siffon</option>
+                <option value="3">Caroline Jackson</option>
+                <option value="4">Camiie Jackson</option>
+                <option value="5">Red Naomi</option>
+                <option value="6">Ashey Smith</option>
+                <option value="7">Veronica Biden</option>
+                <option value="8">Nichole Frey</option>
+            </select>
+            <input type="submit" value="Upload">
+        </form>
+        <br><br>
+        <div class="upload-links">
+            <a href="/gallery/1">Caroline michelle</a>
+            <a href="/gallery/2">Queen Siffon</a>
+            <a href="/gallery/3">Caroline Jackson</a>
+            <a href="/gallery/4">Camiie Jackson</a>
+            <a href="/gallery/5">Red Naomi</a>
+            <a href="/gallery/6">Ashey Smith</a>
+            <a href="/gallery/7">Veronica Biden</a>
+            <a href="/gallery/8">Nichole Frey</a>
+        </div>
+    </div>
+</body>
+</html>

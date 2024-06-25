@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gallery 1 - Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 100px auto 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-info {
+            text-align: center;
+        }
+        .profile-info h1 {
+            margin: 0;
+            color: #333;
+        }
+        .profile-info p {
+            margin: 5px 0 0 0;
+            color: #777;
+        }
+        .video-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .video-item {
+            flex: 1 1 30%;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .video-item video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 15% auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        
+    </div>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-picture">
+                
+            </div>
+            <div class="profile-info">
+                <h1>Red Naomi</h1>
+                <p>370k followers</p>
+            </div>
+        </div>
+        <h1>Available videos</h1>
+        <div class="video-gallery">
+            {% for video in videos %}
+            <div class="video-item" onclick="showModal('{{ url_for('download_file', filename=video.filename) }}')">
+                <video controls>
+                    <source src="{{ url_for('download_file', filename=video.filename) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <video id="modalVideo" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <script>
+        var currentVideo = null;
+
+        function showModal(videoSrc) {
+            // Pause current video if one is playing
+            if (currentVideo) {
+                currentVideo.pause();
+                currentVideo.currentTime = 0;
+            }
+            // Set new video source and display modal
+            document.getElementById('modalVideo').src = videoSrc;
+            document.getElementById('myModal').style.display = "block";
+            // Store reference to current video
+            currentVideo = document.getElementById('modalVideo');
+            currentVideo.play();
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+            currentVideo.pause();
+            currentVideo.currentTime = 0;
+        }
+    </script>
+</body>
+</html>
